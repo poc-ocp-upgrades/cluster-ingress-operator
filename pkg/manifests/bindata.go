@@ -19,6 +19,8 @@ import (
 func bindataRead(data []byte, name string) ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	gz, err := gzip.NewReader(bytes.NewBuffer(data))
 	if err != nil {
 		return nil, fmt.Errorf("Read %q: %v", name, err)
@@ -50,9 +52,13 @@ type bindataFileInfo struct {
 func (fi bindataFileInfo) Name() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fi.name
 }
 func (fi bindataFileInfo) Size() int64 {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return fi.size
@@ -60,9 +66,13 @@ func (fi bindataFileInfo) Size() int64 {
 func (fi bindataFileInfo) Mode() os.FileMode {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fi.mode
 }
 func (fi bindataFileInfo) ModTime() time.Time {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return fi.modTime
@@ -70,9 +80,13 @@ func (fi bindataFileInfo) ModTime() time.Time {
 func (fi bindataFileInfo) IsDir() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
 func (fi bindataFileInfo) Sys() interface{} {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil
@@ -83,9 +97,13 @@ var _assetsRouterClusterRoleBindingYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x
 func assetsRouterClusterRoleBindingYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterClusterRoleBindingYaml, "assets/router/cluster-role-binding.yaml")
 }
 func assetsRouterClusterRoleBindingYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterClusterRoleBindingYamlBytes()
@@ -102,9 +120,13 @@ var _assetsRouterClusterRoleYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\
 func assetsRouterClusterRoleYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterClusterRoleYaml, "assets/router/cluster-role.yaml")
 }
 func assetsRouterClusterRoleYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterClusterRoleYamlBytes()
@@ -121,9 +143,13 @@ var _assetsRouterDeploymentYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x
 func assetsRouterDeploymentYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterDeploymentYaml, "assets/router/deployment.yaml")
 }
 func assetsRouterDeploymentYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterDeploymentYamlBytes()
@@ -140,9 +166,13 @@ var _assetsRouterMetricsClusterRoleBindingYaml = []byte("\x1f\x8b\x08\x00\x00\x0
 func assetsRouterMetricsClusterRoleBindingYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterMetricsClusterRoleBindingYaml, "assets/router/metrics/cluster-role-binding.yaml")
 }
 func assetsRouterMetricsClusterRoleBindingYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterMetricsClusterRoleBindingYamlBytes()
@@ -159,9 +189,13 @@ var _assetsRouterMetricsClusterRoleYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x
 func assetsRouterMetricsClusterRoleYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterMetricsClusterRoleYaml, "assets/router/metrics/cluster-role.yaml")
 }
 func assetsRouterMetricsClusterRoleYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterMetricsClusterRoleYamlBytes()
@@ -178,9 +212,13 @@ var _assetsRouterMetricsRoleBindingYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x
 func assetsRouterMetricsRoleBindingYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterMetricsRoleBindingYaml, "assets/router/metrics/role-binding.yaml")
 }
 func assetsRouterMetricsRoleBindingYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterMetricsRoleBindingYamlBytes()
@@ -197,9 +235,13 @@ var _assetsRouterMetricsRoleYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\
 func assetsRouterMetricsRoleYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterMetricsRoleYaml, "assets/router/metrics/role.yaml")
 }
 func assetsRouterMetricsRoleYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterMetricsRoleYamlBytes()
@@ -216,9 +258,13 @@ var _assetsRouterNamespaceYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xf
 func assetsRouterNamespaceYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterNamespaceYaml, "assets/router/namespace.yaml")
 }
 func assetsRouterNamespaceYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterNamespaceYamlBytes()
@@ -235,9 +281,13 @@ var _assetsRouterServiceAccountYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x
 func assetsRouterServiceAccountYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterServiceAccountYaml, "assets/router/service-account.yaml")
 }
 func assetsRouterServiceAccountYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterServiceAccountYamlBytes()
@@ -254,9 +304,13 @@ var _assetsRouterServiceCloudYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00
 func assetsRouterServiceCloudYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterServiceCloudYaml, "assets/router/service-cloud.yaml")
 }
 func assetsRouterServiceCloudYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterServiceCloudYamlBytes()
@@ -273,9 +327,13 @@ var _assetsRouterServiceInternalYaml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\
 func assetsRouterServiceInternalYamlBytes() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindataRead(_assetsRouterServiceInternalYaml, "assets/router/service-internal.yaml")
 }
 func assetsRouterServiceInternalYaml() (*asset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := assetsRouterServiceInternalYamlBytes()
@@ -287,6 +345,8 @@ func assetsRouterServiceInternalYaml() (*asset, error) {
 	return a, nil
 }
 func Asset(name string) ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	canonicalName := strings.Replace(name, "\\", "/", -1)
@@ -302,10 +362,14 @@ func Asset(name string) ([]byte, error) {
 func AssetString(name string) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	data, err := Asset(name)
 	return string(data), err
 }
 func MustAsset(name string) []byte {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	a, err := Asset(name)
@@ -317,9 +381,13 @@ func MustAsset(name string) []byte {
 func MustAssetString(name string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return string(MustAsset(name))
 }
 func AssetInfo(name string) (os.FileInfo, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	canonicalName := strings.Replace(name, "\\", "/", -1)
@@ -335,6 +403,8 @@ func AssetInfo(name string) (os.FileInfo, error) {
 func AssetDigest(name string) ([sha256.Size]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	canonicalName := strings.Replace(name, "\\", "/", -1)
 	if f, ok := _bindata[canonicalName]; ok {
 		a, err := f()
@@ -346,6 +416,8 @@ func AssetDigest(name string) ([sha256.Size]byte, error) {
 	return [sha256.Size]byte{}, fmt.Errorf("AssetDigest %s not found", name)
 }
 func Digests() (map[string][sha256.Size]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	mp := make(map[string][sha256.Size]byte, len(_bindata))
@@ -361,6 +433,8 @@ func Digests() (map[string][sha256.Size]byte, error) {
 func AssetNames() []string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	names := make([]string, 0, len(_bindata))
 	for name := range _bindata {
 		names = append(names, name)
@@ -371,6 +445,8 @@ func AssetNames() []string {
 var _bindata = map[string]func() (*asset, error){"assets/router/cluster-role-binding.yaml": assetsRouterClusterRoleBindingYaml, "assets/router/cluster-role.yaml": assetsRouterClusterRoleYaml, "assets/router/deployment.yaml": assetsRouterDeploymentYaml, "assets/router/metrics/cluster-role-binding.yaml": assetsRouterMetricsClusterRoleBindingYaml, "assets/router/metrics/cluster-role.yaml": assetsRouterMetricsClusterRoleYaml, "assets/router/metrics/role-binding.yaml": assetsRouterMetricsRoleBindingYaml, "assets/router/metrics/role.yaml": assetsRouterMetricsRoleYaml, "assets/router/namespace.yaml": assetsRouterNamespaceYaml, "assets/router/service-account.yaml": assetsRouterServiceAccountYaml, "assets/router/service-cloud.yaml": assetsRouterServiceCloudYaml, "assets/router/service-internal.yaml": assetsRouterServiceInternalYaml}
 
 func AssetDir(name string) ([]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	node := _bintree
@@ -404,6 +480,8 @@ var _bintree = &bintree{nil, map[string]*bintree{"assets": {nil, map[string]*bin
 func RestoreAsset(dir, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	data, err := Asset(name)
 	if err != nil {
 		return err
@@ -425,6 +503,8 @@ func RestoreAsset(dir, name string) error {
 func RestoreAssets(dir, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	children, err := AssetDir(name)
 	if err != nil {
 		return RestoreAsset(dir, name)
@@ -440,13 +520,24 @@ func RestoreAssets(dir, name string) error {
 func _filePath(dir, name string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	canonicalName := strings.Replace(name, "\\", "/", -1)
 	return filepath.Join(append([]string{dir}, strings.Split(canonicalName, "/")...)...)
 }
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

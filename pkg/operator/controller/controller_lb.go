@@ -22,6 +22,8 @@ const (
 func (r *reconciler) ensureLoadBalancerService(ci *operatorv1.IngressController, deploymentRef metav1.OwnerReference, infraConfig *configv1.Infrastructure) (*corev1.Service, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	desiredLBService, err := desiredLoadBalancerService(ci, deploymentRef, infraConfig)
 	if err != nil {
 		return nil, err
@@ -42,9 +44,13 @@ func (r *reconciler) ensureLoadBalancerService(ci *operatorv1.IngressController,
 func loadBalancerServiceName(ci *operatorv1.IngressController) types.NamespacedName {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return types.NamespacedName{Namespace: "openshift-ingress", Name: "router-" + ci.Name}
 }
 func desiredLoadBalancerService(ci *operatorv1.IngressController, deploymentRef metav1.OwnerReference, infraConfig *configv1.Infrastructure) (*corev1.Service, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if ci.Status.EndpointPublishingStrategy.Type != operatorv1.LoadBalancerServiceStrategyType {
@@ -73,6 +79,8 @@ func desiredLoadBalancerService(ci *operatorv1.IngressController, deploymentRef 
 func (r *reconciler) currentLoadBalancerService(ci *operatorv1.IngressController) (*corev1.Service, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	service := &corev1.Service{}
 	if err := r.client.Get(context.TODO(), loadBalancerServiceName(ci), service); err != nil {
 		if errors.IsNotFound(err) {
@@ -83,6 +91,8 @@ func (r *reconciler) currentLoadBalancerService(ci *operatorv1.IngressController
 	return service, nil
 }
 func (r *reconciler) finalizeLoadBalancerService(ci *operatorv1.IngressController, dnsConfig *configv1.DNS) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	service, err := r.currentLoadBalancerService(ci)

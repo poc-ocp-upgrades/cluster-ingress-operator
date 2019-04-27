@@ -15,6 +15,8 @@ import (
 func (r *reconciler) ensureRouterCertsGlobalSecret(secrets []corev1.Secret, ingresses []operatorv1.IngressController) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	desired, err := desiredRouterCertsGlobalSecret(secrets, ingresses, r.operandNamespace)
 	if err != nil {
 		return err
@@ -53,6 +55,8 @@ func (r *reconciler) ensureRouterCertsGlobalSecret(secrets []corev1.Secret, ingr
 func desiredRouterCertsGlobalSecret(secrets []corev1.Secret, ingresses []operatorv1.IngressController, operandNamespace string) (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(ingresses) == 0 || len(secrets) == 0 {
 		return nil, nil
 	}
@@ -81,6 +85,8 @@ func desiredRouterCertsGlobalSecret(secrets []corev1.Secret, ingresses []operato
 func (r *reconciler) currentRouterCertsGlobalSecret() (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	name := controller.RouterCertsGlobalSecretName()
 	secret := &corev1.Secret{}
 	if err := r.client.Get(context.TODO(), name, secret); err != nil {
@@ -94,6 +100,8 @@ func (r *reconciler) currentRouterCertsGlobalSecret() (*corev1.Secret, error) {
 func (r *reconciler) createRouterCertsGlobalSecret(secret *corev1.Secret) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := r.client.Create(context.TODO(), secret); err != nil {
 		if errors.IsAlreadyExists(err) {
 			return false, nil
@@ -103,6 +111,8 @@ func (r *reconciler) createRouterCertsGlobalSecret(secret *corev1.Secret) (bool,
 	return true, nil
 }
 func (r *reconciler) updateRouterCertsGlobalSecret(current, desired *corev1.Secret) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if routerCertsSecretsEqual(current, desired) {
@@ -121,6 +131,8 @@ func (r *reconciler) updateRouterCertsGlobalSecret(current, desired *corev1.Secr
 func (r *reconciler) deleteRouterCertsGlobalSecret(secret *corev1.Secret) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := r.client.Delete(context.TODO(), secret); err != nil {
 		if errors.IsNotFound(err) {
 			return false, nil
@@ -130,6 +142,8 @@ func (r *reconciler) deleteRouterCertsGlobalSecret(secret *corev1.Secret) (bool,
 	return true, nil
 }
 func routerCertsSecretsEqual(a, b *corev1.Secret) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !reflect.DeepEqual(a.Data, b.Data) {

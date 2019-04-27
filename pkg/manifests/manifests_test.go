@@ -9,6 +9,8 @@ import (
 func TestManifests(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	f := &Factory{}
 	var one int32 = 1
 	ci := &operatorv1.IngressController{ObjectMeta: metav1.ObjectMeta{Name: "default"}, Spec: operatorv1.IngressControllerSpec{NamespaceSelector: &metav1.LabelSelector{MatchLabels: map[string]string{"foo": "bar"}}, Replicas: &one, RouteSelector: &metav1.LabelSelector{MatchLabels: map[string]string{"baz": "quux"}}}}

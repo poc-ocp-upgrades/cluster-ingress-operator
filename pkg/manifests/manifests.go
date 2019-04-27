@@ -34,12 +34,16 @@ const (
 func MustAssetReader(asset string) io.Reader {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bytes.NewReader(MustAsset(asset))
 }
 
 type Factory struct{}
 
 func RouterNamespace() *corev1.Namespace {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ns, err := NewNamespace(MustAssetReader(RouterNamespaceAsset))
@@ -51,6 +55,8 @@ func RouterNamespace() *corev1.Namespace {
 func (f *Factory) RouterServiceAccount() (*corev1.ServiceAccount, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sa, err := NewServiceAccount(MustAssetReader(RouterServiceAccount))
 	if err != nil {
 		return nil, err
@@ -58,6 +64,8 @@ func (f *Factory) RouterServiceAccount() (*corev1.ServiceAccount, error) {
 	return sa, nil
 }
 func (f *Factory) RouterClusterRole() (*rbacv1.ClusterRole, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cr, err := NewClusterRole(MustAssetReader(RouterClusterRole))
@@ -69,6 +77,8 @@ func (f *Factory) RouterClusterRole() (*rbacv1.ClusterRole, error) {
 func (f *Factory) RouterClusterRoleBinding() (*rbacv1.ClusterRoleBinding, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	crb, err := NewClusterRoleBinding(MustAssetReader(RouterClusterRoleBinding))
 	if err != nil {
 		return nil, err
@@ -76,6 +86,8 @@ func (f *Factory) RouterClusterRoleBinding() (*rbacv1.ClusterRoleBinding, error)
 	return crb, nil
 }
 func (f *Factory) RouterStatsSecret(cr *operatorv1.IngressController) (*corev1.Secret, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s := &corev1.Secret{ObjectMeta: metav1.ObjectMeta{Name: fmt.Sprintf("router-stats-%s", cr.Name), Namespace: "openshift-ingress"}, Type: corev1.SecretTypeOpaque, Data: map[string][]byte{}}
@@ -88,6 +100,8 @@ func (f *Factory) RouterStatsSecret(cr *operatorv1.IngressController) (*corev1.S
 func RouterDeployment() *appsv1.Deployment {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	deployment, err := NewDeployment(MustAssetReader(RouterDeploymentAsset))
 	if err != nil {
 		panic(err)
@@ -95,6 +109,8 @@ func RouterDeployment() *appsv1.Deployment {
 	return deployment
 }
 func InternalIngressControllerService() *corev1.Service {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s, err := NewService(MustAssetReader(RouterServiceInternal))
@@ -106,6 +122,8 @@ func InternalIngressControllerService() *corev1.Service {
 func LoadBalancerService() *corev1.Service {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s, err := NewService(MustAssetReader(RouterServiceCloud))
 	if err != nil {
 		panic(err)
@@ -113,6 +131,8 @@ func LoadBalancerService() *corev1.Service {
 	return s
 }
 func (f *Factory) MetricsClusterRole() (*rbacv1.ClusterRole, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cr, err := NewClusterRole(MustAssetReader(MetricsClusterRole))
@@ -124,6 +144,8 @@ func (f *Factory) MetricsClusterRole() (*rbacv1.ClusterRole, error) {
 func (f *Factory) MetricsClusterRoleBinding() (*rbacv1.ClusterRoleBinding, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	crb, err := NewClusterRoleBinding(MustAssetReader(MetricsClusterRoleBinding))
 	if err != nil {
 		return nil, err
@@ -131,6 +153,8 @@ func (f *Factory) MetricsClusterRoleBinding() (*rbacv1.ClusterRoleBinding, error
 	return crb, nil
 }
 func (f *Factory) MetricsRole() (*rbacv1.Role, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	r, err := NewRole(MustAssetReader(MetricsRole))
@@ -142,6 +166,8 @@ func (f *Factory) MetricsRole() (*rbacv1.Role, error) {
 func (f *Factory) MetricsRoleBinding() (*rbacv1.RoleBinding, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rb, err := NewRoleBinding(MustAssetReader(MetricsRoleBinding))
 	if err != nil {
 		return nil, err
@@ -149,6 +175,8 @@ func (f *Factory) MetricsRoleBinding() (*rbacv1.RoleBinding, error) {
 	return rb, nil
 }
 func NewServiceAccount(manifest io.Reader) (*corev1.ServiceAccount, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sa := corev1.ServiceAccount{}
@@ -160,6 +188,8 @@ func NewServiceAccount(manifest io.Reader) (*corev1.ServiceAccount, error) {
 func NewRole(manifest io.Reader) (*rbacv1.Role, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	r := rbacv1.Role{}
 	if err := yaml.NewYAMLOrJSONDecoder(manifest, 100).Decode(&r); err != nil {
 		return nil, err
@@ -167,6 +197,8 @@ func NewRole(manifest io.Reader) (*rbacv1.Role, error) {
 	return &r, nil
 }
 func NewRoleBinding(manifest io.Reader) (*rbacv1.RoleBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rb := rbacv1.RoleBinding{}
@@ -178,6 +210,8 @@ func NewRoleBinding(manifest io.Reader) (*rbacv1.RoleBinding, error) {
 func NewClusterRole(manifest io.Reader) (*rbacv1.ClusterRole, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cr := rbacv1.ClusterRole{}
 	if err := yaml.NewYAMLOrJSONDecoder(manifest, 100).Decode(&cr); err != nil {
 		return nil, err
@@ -185,6 +219,8 @@ func NewClusterRole(manifest io.Reader) (*rbacv1.ClusterRole, error) {
 	return &cr, nil
 }
 func NewClusterRoleBinding(manifest io.Reader) (*rbacv1.ClusterRoleBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	crb := rbacv1.ClusterRoleBinding{}
@@ -196,6 +232,8 @@ func NewClusterRoleBinding(manifest io.Reader) (*rbacv1.ClusterRoleBinding, erro
 func NewService(manifest io.Reader) (*corev1.Service, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s := corev1.Service{}
 	if err := yaml.NewYAMLOrJSONDecoder(manifest, 100).Decode(&s); err != nil {
 		return nil, err
@@ -203,6 +241,8 @@ func NewService(manifest io.Reader) (*corev1.Service, error) {
 	return &s, nil
 }
 func NewNamespace(manifest io.Reader) (*corev1.Namespace, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ns := corev1.Namespace{}
@@ -214,6 +254,8 @@ func NewNamespace(manifest io.Reader) (*corev1.Namespace, error) {
 func NewDeployment(manifest io.Reader) (*appsv1.Deployment, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o := appsv1.Deployment{}
 	if err := yaml.NewYAMLOrJSONDecoder(manifest, 100).Decode(&o); err != nil {
 		return nil, err
@@ -221,6 +263,8 @@ func NewDeployment(manifest io.Reader) (*appsv1.Deployment, error) {
 	return &o, nil
 }
 func NewRoute(manifest io.Reader) (*routev1.Route, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o := routev1.Route{}

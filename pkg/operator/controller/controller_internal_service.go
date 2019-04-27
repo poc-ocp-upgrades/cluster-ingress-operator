@@ -17,6 +17,8 @@ const (
 func (r *reconciler) ensureInternalIngressControllerService(ic *operatorv1.IngressController, deploymentRef metav1.OwnerReference) (*corev1.Service, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	desired := desiredInternalIngressControllerService(ic, deploymentRef)
 	current, err := r.currentInternalIngressControllerService(ic)
 	if err != nil {
@@ -34,6 +36,8 @@ func (r *reconciler) ensureInternalIngressControllerService(ic *operatorv1.Ingre
 func (r *reconciler) currentInternalIngressControllerService(ic *operatorv1.IngressController) (*corev1.Service, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	current := &corev1.Service{}
 	err := r.client.Get(context.TODO(), InternalIngressControllerServiceName(ic), current)
 	if err != nil {
@@ -45,6 +49,8 @@ func (r *reconciler) currentInternalIngressControllerService(ic *operatorv1.Ingr
 	return current, nil
 }
 func desiredInternalIngressControllerService(ic *operatorv1.IngressController, deploymentRef metav1.OwnerReference) *corev1.Service {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s := manifests.InternalIngressControllerService()

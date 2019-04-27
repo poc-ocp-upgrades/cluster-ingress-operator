@@ -11,6 +11,8 @@ import (
 func TestShouldPublishRouterCA(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var replicas int32 = 1
 	var (
 		empty	= ""

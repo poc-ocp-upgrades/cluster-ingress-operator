@@ -13,6 +13,8 @@ import (
 func (r *reconciler) ensureRouterCAConfigMap(secret *corev1.Secret, ingresses []operatorv1.IngressController) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	desired, err := desiredRouterCAConfigMap(secret, ingresses)
 	if err != nil {
 		return err
@@ -51,6 +53,8 @@ func (r *reconciler) ensureRouterCAConfigMap(secret *corev1.Secret, ingresses []
 func desiredRouterCAConfigMap(secret *corev1.Secret, ingresses []operatorv1.IngressController) (*corev1.ConfigMap, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !shouldPublishRouterCA(ingresses) {
 		return nil, nil
 	}
@@ -61,6 +65,8 @@ func desiredRouterCAConfigMap(secret *corev1.Secret, ingresses []operatorv1.Ingr
 func shouldPublishRouterCA(ingresses []operatorv1.IngressController) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, ci := range ingresses {
 		if ci.Spec.DefaultCertificate == nil {
 			return true
@@ -69,6 +75,8 @@ func shouldPublishRouterCA(ingresses []operatorv1.IngressController) bool {
 	return false
 }
 func (r *reconciler) currentRouterCAConfigMap() (*corev1.ConfigMap, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	name := controller.RouterCAConfigMapName()
@@ -84,12 +92,16 @@ func (r *reconciler) currentRouterCAConfigMap() (*corev1.ConfigMap, error) {
 func (r *reconciler) createRouterCAConfigMap(cm *corev1.ConfigMap) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := r.client.Create(context.TODO(), cm); err != nil {
 		return false, err
 	}
 	return true, nil
 }
 func (r *reconciler) updateRouterCAConfigMap(current, desired *corev1.ConfigMap) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if routerCAConfigMapsEqual(current, desired) {
@@ -105,6 +117,8 @@ func (r *reconciler) updateRouterCAConfigMap(current, desired *corev1.ConfigMap)
 func (r *reconciler) deleteRouterCAConfigMap(cm *corev1.ConfigMap) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := r.client.Delete(context.TODO(), cm); err != nil {
 		if errors.IsNotFound(err) {
 			return false, nil
@@ -114,6 +128,8 @@ func (r *reconciler) deleteRouterCAConfigMap(cm *corev1.ConfigMap) (bool, error)
 	return true, nil
 }
 func routerCAConfigMapsEqual(a, b *corev1.ConfigMap) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if a.Data["ca-bundle.crt"] != b.Data["ca-bundle.crt"] {

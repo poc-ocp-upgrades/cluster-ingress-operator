@@ -29,6 +29,8 @@ var log = logf.Logger.WithName(controllerName)
 func New(mgr manager.Manager, client client.Client, operatorNamespace string) (runtimecontroller.Controller, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	reconciler := &reconciler{client: client, recorder: mgr.GetEventRecorderFor(controllerName), operatorNamespace: operatorNamespace}
 	c, err := runtimecontroller.New(controllerName, mgr, runtimecontroller.Options{Reconciler: reconciler})
 	if err != nil {
@@ -47,6 +49,8 @@ type reconciler struct {
 }
 
 func (r *reconciler) Reconcile(request reconcile.Request) (reconcile.Result, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ca, err := r.ensureRouterCASecret()

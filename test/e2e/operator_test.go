@@ -40,6 +40,8 @@ const (
 func getClient() (client.Client, string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	namespace, ok := os.LookupEnv("WATCH_NAMESPACE")
 	if !ok {
 		return nil, "", fmt.Errorf("WATCH_NAMESPACE environment variable is required")
@@ -57,10 +59,14 @@ func getClient() (client.Client, string, error) {
 func newIngressController(name, ns, domain string, epType operatorv1.EndpointPublishingStrategyType) *operatorv1.IngressController {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	repl := int32(1)
 	return &operatorv1.IngressController{ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: ns}, Spec: operatorv1.IngressControllerSpec{Domain: domain, Replicas: &repl, EndpointPublishingStrategy: &operatorv1.EndpointPublishingStrategy{Type: epType}}}
 }
 func TestOperatorAvailable(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cl, _, err := getClient()
@@ -86,6 +92,8 @@ func TestOperatorAvailable(t *testing.T) {
 func TestDefaultIngressControllerExists(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cl, ns, err := getClient()
 	if err != nil {
 		t.Fatal(err)
@@ -102,6 +110,8 @@ func TestDefaultIngressControllerExists(t *testing.T) {
 	}
 }
 func TestIngressControllerControllerCreateDelete(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cl, ns, err := getClient()
@@ -150,6 +160,8 @@ func TestIngressControllerControllerCreateDelete(t *testing.T) {
 	}
 }
 func TestClusterProxyProtocol(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cl, ns, err := getClient()
@@ -209,6 +221,8 @@ func TestClusterProxyProtocol(t *testing.T) {
 	}
 }
 func TestIngressControllerUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cl, ns, err := getClient()
@@ -314,6 +328,8 @@ func TestIngressControllerUpdate(t *testing.T) {
 func createDefaultCertTestSecret(cl client.Client, name string) (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	defaultCert := `-----BEGIN CERTIFICATE-----
 MIIDIjCCAgqgAwIBAgIBBjANBgkqhkiG9w0BAQUFADCBoTELMAkGA1UEBhMCVVMx
 CzAJBgNVBAgMAlNDMRUwEwYDVQQHDAxEZWZhdWx0IENpdHkxHDAaBgNVBAoME0Rl
@@ -357,6 +373,8 @@ u3YLAbyW/lHhOCiZu2iAI8AbmXem9lW6Tr7p/97s0w==
 	return secret, cl.Create(context.TODO(), secret)
 }
 func TestIngressControllerScale(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cl, ns, err := getClient()
@@ -422,6 +440,8 @@ func TestIngressControllerScale(t *testing.T) {
 func getScaleClient() (scale.ScalesGetter, discovery.CachedDiscoveryInterface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	kubeConfig, err := config.GetConfig()
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to get kube config: %v", err)
@@ -439,6 +459,8 @@ func getScaleClient() (scale.ScalesGetter, discovery.CachedDiscoveryInterface, e
 	return scale, cachedDiscovery, err
 }
 func TestRouterCACertificate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cl, ns, err := getClient()
@@ -512,6 +534,8 @@ func TestRouterCACertificate(t *testing.T) {
 	}
 }
 func TestHostNetworkEndpointPublishingStrategy(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cl, ns, err := getClient()

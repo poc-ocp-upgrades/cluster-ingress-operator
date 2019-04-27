@@ -18,6 +18,8 @@ import (
 func (r *reconciler) ensureRouterDeployment(ci *operatorv1.IngressController, infraConfig *configv1.Infrastructure) (*appsv1.Deployment, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	desired, err := desiredRouterDeployment(ci, r.Config.RouterImage, infraConfig)
 	if err != nil {
 		return nil, fmt.Errorf("failed to build router deployment: %v", err)
@@ -41,6 +43,8 @@ func (r *reconciler) ensureRouterDeployment(ci *operatorv1.IngressController, in
 func (r *reconciler) ensureRouterDeleted(ci *operatorv1.IngressController) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	deployment := &appsv1.Deployment{}
 	name := RouterDeploymentName(ci)
 	deployment.Name = name.Name
@@ -53,6 +57,8 @@ func (r *reconciler) ensureRouterDeleted(ci *operatorv1.IngressController) error
 	return nil
 }
 func desiredRouterDeployment(ci *operatorv1.IngressController, routerImage string, infraConfig *configv1.Infrastructure) (*appsv1.Deployment, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	deployment := manifests.RouterDeployment()
@@ -131,6 +137,8 @@ func desiredRouterDeployment(ci *operatorv1.IngressController, routerImage strin
 func (r *reconciler) currentRouterDeployment(ci *operatorv1.IngressController) (*appsv1.Deployment, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	deployment := &appsv1.Deployment{}
 	if err := r.client.Get(context.TODO(), RouterDeploymentName(ci), deployment); err != nil {
 		if errors.IsNotFound(err) {
@@ -143,6 +151,8 @@ func (r *reconciler) currentRouterDeployment(ci *operatorv1.IngressController) (
 func (r *reconciler) createRouterDeployment(deployment *appsv1.Deployment) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := r.client.Create(context.TODO(), deployment); err != nil {
 		return fmt.Errorf("failed to create router deployment %s/%s: %v", deployment.Namespace, deployment.Name, err)
 	}
@@ -150,6 +160,8 @@ func (r *reconciler) createRouterDeployment(deployment *appsv1.Deployment) error
 	return nil
 }
 func (r *reconciler) updateRouterDeployment(current, desired *appsv1.Deployment) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	changed, updated := deploymentConfigChanged(current, desired)
@@ -163,6 +175,8 @@ func (r *reconciler) updateRouterDeployment(current, desired *appsv1.Deployment)
 	return nil
 }
 func deploymentConfigChanged(current, expected *appsv1.Deployment) (bool, *appsv1.Deployment) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if cmp.Equal(current.Spec.Template.Spec.Volumes, expected.Spec.Template.Spec.Volumes, cmpopts.EquateEmpty(), cmpopts.SortSlices(cmpVolumes), cmp.Comparer(cmpSecretVolumeSource)) && cmp.Equal(current.Spec.Template.Spec.NodeSelector, expected.Spec.Template.Spec.NodeSelector, cmpopts.EquateEmpty()) && cmp.Equal(current.Spec.Template.Spec.Containers[0].Env, expected.Spec.Template.Spec.Containers[0].Env, cmpopts.EquateEmpty(), cmpopts.SortSlices(cmpEnvs)) && current.Spec.Template.Spec.Containers[0].Image == expected.Spec.Template.Spec.Containers[0].Image && cmp.Equal(current.Spec.Template.Spec.Tolerations, expected.Spec.Template.Spec.Tolerations, cmpopts.EquateEmpty(), cmpopts.SortSlices(cmpTolerations)) && current.Spec.Replicas != nil && *current.Spec.Replicas == *expected.Spec.Replicas {
@@ -188,14 +202,20 @@ func deploymentConfigChanged(current, expected *appsv1.Deployment) (bool, *appsv
 func cmpEnvs(a, b corev1.EnvVar) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return a.Name < b.Name
 }
 func cmpVolumes(a, b corev1.Volume) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return a.Name < b.Name
 }
 func cmpSecretVolumeSource(a, b corev1.SecretVolumeSource) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if a.SecretName != b.SecretName {
@@ -221,6 +241,8 @@ func cmpSecretVolumeSource(a, b corev1.SecretVolumeSource) bool {
 	return true
 }
 func cmpTolerations(a, b corev1.Toleration) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if a.Key != b.Key {

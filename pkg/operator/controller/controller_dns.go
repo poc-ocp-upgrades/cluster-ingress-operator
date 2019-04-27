@@ -11,6 +11,8 @@ import (
 func (r *reconciler) ensureDNS(ci *operatorv1.IngressController, service *corev1.Service, dnsConfig *configv1.DNS) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ingress := service.Status.LoadBalancer.Ingress
 	if len(ingress) == 0 || len(ingress[0].Hostname) == 0 {
 		return fmt.Errorf("no load balancer is assigned to service %s/%s", service.Namespace, service.Name)
@@ -29,6 +31,8 @@ func (r *reconciler) ensureDNS(ci *operatorv1.IngressController, service *corev1
 	return nil
 }
 func desiredDNSRecords(ci *operatorv1.IngressController, hostname string, dnsConfig *configv1.DNS) ([]*dns.Record, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	records := []*dns.Record{}

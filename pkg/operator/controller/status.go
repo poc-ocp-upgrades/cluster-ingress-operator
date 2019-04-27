@@ -25,6 +25,8 @@ const (
 func (r *reconciler) syncOperatorStatus() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	co := &configv1.ClusterOperator{ObjectMeta: metav1.ObjectMeta{Name: IngressClusterOperatorName}}
 	if err := r.client.Get(context.TODO(), types.NamespacedName{Name: co.Name}, co); err != nil {
 		if errors.IsNotFound(err) {
@@ -59,6 +61,8 @@ func (r *reconciler) syncOperatorStatus() error {
 func (r *reconciler) getOperatorState() (*corev1.Namespace, []operatorv1.IngressController, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ns := manifests.RouterNamespace()
 	if err := r.client.Get(context.TODO(), types.NamespacedName{Name: ns.Name}, ns); err != nil {
 		if errors.IsNotFound(err) {
@@ -75,12 +79,16 @@ func (r *reconciler) getOperatorState() (*corev1.Namespace, []operatorv1.Ingress
 func computeOperatorStatusConditions(conditions []configv1.ClusterOperatorStatusCondition, ns *corev1.Namespace, ingresses []operatorv1.IngressController) []configv1.ClusterOperatorStatusCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	conditions = computeOperatorFailingCondition(conditions, ns)
 	conditions = computeOperatorProgressingCondition(conditions, ingresses)
 	conditions = computeOperatorAvailableCondition(conditions, ingresses)
 	return conditions
 }
 func computeOperatorFailingCondition(conditions []configv1.ClusterOperatorStatusCondition, ns *corev1.Namespace) []configv1.ClusterOperatorStatusCondition {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	failingCondition := &configv1.ClusterOperatorStatusCondition{Type: configv1.OperatorFailing, Status: configv1.ConditionUnknown}
@@ -95,6 +103,8 @@ func computeOperatorFailingCondition(conditions []configv1.ClusterOperatorStatus
 	return setOperatorStatusCondition(conditions, failingCondition)
 }
 func computeOperatorProgressingCondition(conditions []configv1.ClusterOperatorStatusCondition, ingresses []operatorv1.IngressController) []configv1.ClusterOperatorStatusCondition {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	progressingCondition := &configv1.ClusterOperatorStatusCondition{Type: configv1.OperatorProgressing, Status: configv1.ConditionUnknown}
@@ -121,6 +131,8 @@ func computeOperatorProgressingCondition(conditions []configv1.ClusterOperatorSt
 func computeOperatorAvailableCondition(conditions []configv1.ClusterOperatorStatusCondition, ingresses []operatorv1.IngressController) []configv1.ClusterOperatorStatusCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	availableCondition := &configv1.ClusterOperatorStatusCondition{Type: configv1.OperatorAvailable, Status: configv1.ConditionUnknown}
 	numIngresses := len(ingresses)
 	var ingressesAvailable int
@@ -145,6 +157,8 @@ func computeOperatorAvailableCondition(conditions []configv1.ClusterOperatorStat
 func setOperatorStatusCondition(oldConditions []configv1.ClusterOperatorStatusCondition, condition *configv1.ClusterOperatorStatusCondition) []configv1.ClusterOperatorStatusCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	condition.LastTransitionTime = metav1.Now()
 	newConditions := []configv1.ClusterOperatorStatusCondition{}
 	found := false
@@ -165,6 +179,8 @@ func setOperatorStatusCondition(oldConditions []configv1.ClusterOperatorStatusCo
 	return newConditions
 }
 func operatorStatusesEqual(a, b configv1.ClusterOperatorStatus) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	conditionCmpOpts := []cmp.Option{cmpopts.IgnoreFields(configv1.ClusterOperatorStatusCondition{}, "LastTransitionTime"), cmpopts.EquateEmpty(), cmpopts.SortSlices(func(a, b configv1.ClusterOperatorStatusCondition) bool {

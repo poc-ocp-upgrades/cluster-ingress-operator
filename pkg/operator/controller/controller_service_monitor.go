@@ -17,6 +17,8 @@ import (
 func (r *reconciler) ensureServiceMonitor(ci *operatorv1.IngressController, svc *corev1.Service, deploymentRef metav1.OwnerReference) (*unstructured.Unstructured, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	desired := desiredServiceMonitor(ci, svc, deploymentRef)
 	current, err := r.currentServiceMonitor(ci)
 	if err != nil {
@@ -34,9 +36,13 @@ func (r *reconciler) ensureServiceMonitor(ci *operatorv1.IngressController, svc 
 func serviceMonitorName(ci *operatorv1.IngressController) types.NamespacedName {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return types.NamespacedName{Namespace: "openshift-ingress", Name: "router-" + ci.Name}
 }
 func desiredServiceMonitor(ci *operatorv1.IngressController, svc *corev1.Service, deploymentRef metav1.OwnerReference) *unstructured.Unstructured {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	name := serviceMonitorName(ci)
@@ -46,6 +52,8 @@ func desiredServiceMonitor(ci *operatorv1.IngressController, svc *corev1.Service
 	return sm
 }
 func (r *reconciler) currentServiceMonitor(ci *operatorv1.IngressController) (*unstructured.Unstructured, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sm := &unstructured.Unstructured{}

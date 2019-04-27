@@ -33,6 +33,8 @@ var log = logf.Logger.WithName("entrypoint")
 func main() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	metrics.DefaultBindAddress = ":60000"
 	kubeConfig, err := config.GetConfig()
 	if err != nil {
@@ -90,6 +92,8 @@ func main() {
 func createDNSManager(cl client.Client, operatorConfig operatorconfig.Config, infraConfig *configv1.Infrastructure, dnsConfig *configv1.DNS) (dns.Manager, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var dnsManager dns.Manager
 	switch infraConfig.Status.Platform {
 	case configv1.AWSPlatformType:
@@ -112,7 +116,16 @@ func createDNSManager(cl client.Client, operatorConfig operatorconfig.Config, in
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

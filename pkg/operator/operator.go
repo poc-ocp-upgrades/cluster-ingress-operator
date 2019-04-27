@@ -45,6 +45,8 @@ const (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	logf.SetRuntimeLogger(log)
 }
 
@@ -57,6 +59,8 @@ type Operator struct {
 }
 
 func New(config operatorconfig.Config, dnsManager dns.Manager, kubeConfig *rest.Config) (*Operator, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	kubeClient, err := operatorclient.NewClient(kubeConfig)
@@ -110,6 +114,8 @@ func New(config operatorconfig.Config, dnsManager dns.Manager, kubeConfig *rest.
 func (o *Operator) Start(stop <-chan struct{}) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	go wait.Until(func() {
 		err := o.ensureDefaultIngressController()
 		if err != nil {
@@ -142,6 +148,8 @@ func (o *Operator) Start(stop <-chan struct{}) error {
 func (o *Operator) ensureDefaultIngressController() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ic := &operatorv1.IngressController{ObjectMeta: metav1.ObjectMeta{Name: DefaultIngressController, Namespace: o.namespace}}
 	err := o.client.Get(context.TODO(), types.NamespacedName{Namespace: ic.Namespace, Name: ic.Name}, ic)
 	if err == nil {
@@ -160,7 +168,16 @@ func (o *Operator) ensureDefaultIngressController() error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

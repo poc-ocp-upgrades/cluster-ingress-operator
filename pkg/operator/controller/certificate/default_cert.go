@@ -15,6 +15,8 @@ import (
 func (r *reconciler) ensureDefaultCertificateForIngress(caSecret *corev1.Secret, namespace string, deploymentRef metav1.OwnerReference, ci *operatorv1.IngressController) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ca, err := crypto.GetCAFromBytes(caSecret.Data["tls.crt"], caSecret.Data["tls.key"])
 	if err != nil {
 		return false, fmt.Errorf("failed to get CA from secret %s/%s: %v", caSecret.Namespace, caSecret.Name, err)
@@ -50,6 +52,8 @@ func (r *reconciler) ensureDefaultCertificateForIngress(caSecret *corev1.Secret,
 func desiredRouterDefaultCertificateSecret(ca *crypto.CA, namespace string, deploymentRef metav1.OwnerReference, ci *operatorv1.IngressController) (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(ci.Status.Domain) == 0 {
 		return nil, nil
 	}
@@ -73,6 +77,8 @@ func desiredRouterDefaultCertificateSecret(ca *crypto.CA, namespace string, depl
 func (r *reconciler) currentRouterDefaultCertificate(ci *operatorv1.IngressController, namespace string) (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	name := controller.RouterOperatorGeneratedDefaultCertificateSecretName(ci, namespace)
 	secret := &corev1.Secret{}
 	if err := r.client.Get(context.TODO(), name, secret); err != nil {
@@ -86,12 +92,16 @@ func (r *reconciler) currentRouterDefaultCertificate(ci *operatorv1.IngressContr
 func (r *reconciler) createRouterDefaultCertificate(secret *corev1.Secret) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := r.client.Create(context.TODO(), secret); err != nil {
 		return false, err
 	}
 	return true, nil
 }
 func (r *reconciler) deleteRouterDefaultCertificate(secret *corev1.Secret) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := r.client.Delete(context.TODO(), secret); err != nil {

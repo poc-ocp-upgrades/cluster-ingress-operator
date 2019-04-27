@@ -18,6 +18,8 @@ var toleration = corev1.Toleration{Key: "foo", Value: "bar", Operator: corev1.To
 func TestDesiredRouterDeployment(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var one int32 = 1
 	ci := &operatorv1.IngressController{ObjectMeta: metav1.ObjectMeta{Name: "default"}, Spec: operatorv1.IngressControllerSpec{NamespaceSelector: &metav1.LabelSelector{MatchLabels: map[string]string{"foo": "bar"}}, Replicas: &one, RouteSelector: &metav1.LabelSelector{MatchLabels: map[string]string{"baz": "quux"}}}, Status: operatorv1.IngressControllerStatus{EndpointPublishingStrategy: &operatorv1.EndpointPublishingStrategy{Type: operatorv1.PrivateStrategyType}}}
 	routerImage := "quay.io/openshift/router:latest"
@@ -181,6 +183,8 @@ func TestDesiredRouterDeployment(t *testing.T) {
 	}
 }
 func TestDeploymentConfigChanged(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testCases := []struct {

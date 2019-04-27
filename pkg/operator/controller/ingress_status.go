@@ -13,6 +13,8 @@ import (
 func (r *reconciler) syncIngressControllerStatus(deployment *appsv1.Deployment, ic *operatorv1.IngressController) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	selector, err := metav1.LabelSelectorAsSelector(deployment.Spec.Selector)
 	if err != nil {
 		return fmt.Errorf("deployment has invalid spec.selector: %v", err)
@@ -31,6 +33,8 @@ func (r *reconciler) syncIngressControllerStatus(deployment *appsv1.Deployment, 
 func computeIngressStatusConditions(conditions []operatorv1.OperatorCondition, deployment *appsv1.Deployment) []operatorv1.OperatorCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	availableCondition := &operatorv1.OperatorCondition{Type: operatorv1.IngressControllerAvailableConditionType, Status: operatorv1.ConditionUnknown}
 	if deployment.Status.AvailableReplicas > 0 {
 		availableCondition.Status = operatorv1.ConditionTrue
@@ -43,6 +47,8 @@ func computeIngressStatusConditions(conditions []operatorv1.OperatorCondition, d
 	return conditions
 }
 func setIngressStatusCondition(oldConditions []operatorv1.OperatorCondition, condition *operatorv1.OperatorCondition) []operatorv1.OperatorCondition {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	condition.LastTransitionTime = metav1.Now()
@@ -65,6 +71,8 @@ func setIngressStatusCondition(oldConditions []operatorv1.OperatorCondition, con
 	return newConditions
 }
 func ingressStatusesEqual(a, b operatorv1.IngressControllerStatus) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	conditionCmpOpts := []cmp.Option{cmpopts.IgnoreFields(operatorv1.OperatorCondition{}, "LastTransitionTime"), cmpopts.EquateEmpty(), cmpopts.SortSlices(func(a, b operatorv1.OperatorCondition) bool {

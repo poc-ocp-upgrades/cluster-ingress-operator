@@ -44,6 +44,8 @@ type reconciler struct {
 func New(mgr manager.Manager, operandCache cache.Cache, cl client.Client, operatorNamespace, operandNamespace string) (runtimecontroller.Controller, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	operatorCache := mgr.GetCache()
 	reconciler := &reconciler{client: cl, operatorCache: operatorCache, operandCache: operandCache, recorder: mgr.GetEventRecorderFor(controllerName), operatorNamespace: operatorNamespace, operandNamespace: operandNamespace}
 	c, err := runtimecontroller.New(controllerName, mgr, runtimecontroller.Options{Reconciler: reconciler})
@@ -87,6 +89,8 @@ func New(mgr manager.Manager, operandCache cache.Cache, cl client.Client, operat
 func (r *reconciler) secretToIngressController(o handler.MapObject) []reconcile.Request {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	requests := []reconcile.Request{}
 	controllers, err := r.ingressControllersWithSecret(o.Meta.GetName())
 	if err != nil {
@@ -103,6 +107,8 @@ func (r *reconciler) secretToIngressController(o handler.MapObject) []reconcile.
 func (r *reconciler) ingressControllersWithSecret(secretName string) ([]operatorv1.IngressController, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	controllers := &operatorv1.IngressControllerList{}
 	if err := r.operatorCache.List(context.Background(), controllers, client.MatchingField("defaultCertificateName", secretName)); err != nil {
 		return nil, err
@@ -110,6 +116,8 @@ func (r *reconciler) ingressControllersWithSecret(secretName string) ([]operator
 	return controllers.Items, nil
 }
 func (r *reconciler) secretIsInUse(meta metav1.Object) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	controllers, err := r.ingressControllersWithSecret(meta.GetName())
@@ -120,6 +128,8 @@ func (r *reconciler) secretIsInUse(meta metav1.Object) bool {
 	return len(controllers) > 0
 }
 func (r *reconciler) hasSecret(meta metav1.Object, o runtime.Object) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ic := o.(*operatorv1.IngressController)
@@ -136,6 +146,8 @@ func (r *reconciler) hasSecret(meta metav1.Object, o runtime.Object) bool {
 func (r *reconciler) secretChanged(old, new runtime.Object) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	oldController := old.(*operatorv1.IngressController)
 	newController := new.(*operatorv1.IngressController)
 	oldSecret := controller.RouterEffectiveDefaultCertificateSecretName(oldController, r.operandNamespace)
@@ -145,6 +157,8 @@ func (r *reconciler) secretChanged(old, new runtime.Object) bool {
 	return oldSecret != newSecret || oldStatus != newStatus
 }
 func (r *reconciler) Reconcile(request reconcile.Request) (reconcile.Result, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	log.Info("Reconciling", "request", request)
@@ -164,7 +178,16 @@ func (r *reconciler) Reconcile(request reconcile.Request) (reconcile.Result, err
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

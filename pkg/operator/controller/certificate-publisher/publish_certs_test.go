@@ -11,6 +11,8 @@ import (
 func newSecret(name string) corev1.Secret {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const (
 		defaultCert	= `-----BEGIN CERTIFICATE-----
 MIIDIjCCAgqgAwIBAgIBBjANBgkqhkiG9w0BAQUFADCBoTELMAkGA1UEBhMCVVMx
@@ -54,6 +56,8 @@ u3YLAbyW/lHhOCiZu2iAI8AbmXem9lW6Tr7p/97s0w==
 func newIngressController(name, defaultCertificateSecretName, domain string) operatorv1.IngressController {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ingresscontroller := operatorv1.IngressController{ObjectMeta: metav1.ObjectMeta{Name: name}, Status: operatorv1.IngressControllerStatus{Domain: domain}}
 	if len(defaultCertificateSecretName) != 0 {
 		ingresscontroller.Spec.DefaultCertificate = &corev1.LocalObjectReference{Name: defaultCertificateSecretName}
@@ -61,6 +65,8 @@ func newIngressController(name, defaultCertificateSecretName, domain string) ope
 	return ingresscontroller
 }
 func TestDesiredRouterCertsGlobalSecret(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type testInputs struct {

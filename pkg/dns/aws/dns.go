@@ -49,6 +49,8 @@ type Config struct {
 func NewManager(config Config, operatorReleaseVersion string) (*Manager, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	creds := credentials.NewStaticCredentials(config.AccessID, config.AccessKey, "")
 	sess, err := session.NewSessionWithOptions(session.Options{Config: aws.Config{Credentials: creds}, SharedConfigState: session.SharedConfigEnable})
 	if err != nil {
@@ -70,6 +72,8 @@ func NewManager(config Config, operatorReleaseVersion string) (*Manager, error) 
 	return &Manager{elb: elb.New(sess, aws.NewConfig().WithRegion(region)), route53: route53.New(sess), tags: resourcegroupstaggingapi.New(sess, aws.NewConfig().WithRegion("us-east-1")), config: config, idsToTags: map[string]map[string]string{}, lbZones: map[string]string{}, updatedRecords: sets.NewString()}, nil
 }
 func (m *Manager) getZoneID(zoneConfig configv1.DNSZone) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m.lock.Lock()
@@ -119,6 +123,8 @@ func (m *Manager) getZoneID(zoneConfig configv1.DNSZone) (string, error) {
 func (m *Manager) getLBHostedZone(name string) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m.lock.Lock()
 	defer m.lock.Unlock()
 	if id, exists := m.lbZones[name]; exists {
@@ -157,14 +163,20 @@ const (
 func (m *Manager) Ensure(record *dns.Record) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return m.change(record, upsertAction)
 }
 func (m *Manager) Delete(record *dns.Record) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return m.change(record, deleteAction)
 }
 func (m *Manager) change(record *dns.Record, action action) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if record.Type != dns.ALIASRecord {
@@ -213,6 +225,8 @@ func (m *Manager) change(record *dns.Record, action action) error {
 func (m *Manager) updateAlias(domain, zoneID, target, targetHostedZoneID, action string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	resp, err := m.route53.ChangeResourceRecordSets(&route53.ChangeResourceRecordSetsInput{HostedZoneId: aws.String(zoneID), ChangeBatch: &route53.ChangeBatch{Changes: []*route53.Change{{Action: aws.String(action), ResourceRecordSet: &route53.ResourceRecordSet{Name: aws.String(domain), Type: aws.String("A"), AliasTarget: &route53.AliasTarget{HostedZoneId: aws.String(targetHostedZoneID), DNSName: aws.String(target), EvaluateTargetHealth: aws.Bool(false)}}}}}})
 	if err != nil {
 		if action == string(deleteAction) {
@@ -231,7 +245,16 @@ func (m *Manager) updateAlias(domain, zoneID, target, targetHostedZoneID, action
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

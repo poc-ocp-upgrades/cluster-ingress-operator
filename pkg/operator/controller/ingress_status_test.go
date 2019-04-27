@@ -11,6 +11,8 @@ import (
 func TestComputeIngressStatusConditions(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testCases := []struct {
 		description	string
 		availRepl, repl	int32
@@ -45,6 +47,8 @@ func TestComputeIngressStatusConditions(t *testing.T) {
 func TestSetIngressStatusCondition(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testCases := []struct {
 		description	string
 		oldConditions	[]operatorv1.OperatorCondition
@@ -61,6 +65,8 @@ func TestSetIngressStatusCondition(t *testing.T) {
 	}
 }
 func TestIngressStatusesEqual(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testCases := []struct {

