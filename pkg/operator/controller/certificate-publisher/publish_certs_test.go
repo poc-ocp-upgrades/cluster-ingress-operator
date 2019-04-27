@@ -3,22 +3,16 @@ package certificatepublisher
 import (
 	"bytes"
 	"testing"
-
 	operatorv1 "github.com/openshift/api/operator/v1"
-
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// newSecret returns a secret with the specified name and with data fields
-// "tls.crt" and "tls.key" containing valid PEM-encoded certificate and private
-// key, respectively.  Note that the certificate and key are valid only in the
-// sense that they respect PEM encoding, not that they have any particular
-// subject etc.
 func newSecret(name string) corev1.Secret {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const (
-		// defaultCert is a PEM-encoded certificate.
-		defaultCert = `-----BEGIN CERTIFICATE-----
+		defaultCert	= `-----BEGIN CERTIFICATE-----
 MIIDIjCCAgqgAwIBAgIBBjANBgkqhkiG9w0BAQUFADCBoTELMAkGA1UEBhMCVVMx
 CzAJBgNVBAgMAlNDMRUwEwYDVQQHDAxEZWZhdWx0IENpdHkxHDAaBgNVBAoME0Rl
 ZmF1bHQgQ29tcGFueSBMdGQxEDAOBgNVBAsMB1Rlc3QgQ0ExGjAYBgNVBAMMEXd3
@@ -38,8 +32,7 @@ nZxdtYUXvEsHZC/6bAtTfNh+/SwgxQJuL2ZM+VG3X2JIKY8xTDui+il7uTh422lq
 wED8uwKl+bOj6xFDyw4gWoBxRobsbFaME8pkykP1+GnKDberyAM=
 -----END CERTIFICATE-----
 `
-		// defaultKey is a PEM-encoded private key.
-		defaultKey = `-----BEGIN RSA PRIVATE KEY-----
+		defaultKey	= `-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQDNAbvvqB1dcHKYVkWzC1H7fHw+5zxvecbO1Hiz6YRWbkoSIYXQ
 EDKb3LBXoPgYPT1grr942ZY5pNOjC77li38I2H6Pav1fqjmVX01Rx22iDuUU1yTA
 tjZ/gAhdJBwZjXG7YTjoBfC/OeGvz/LY5tYj0fvrx55HsdDR+5cqLFXP7wIDAQAB
@@ -56,135 +49,39 @@ u3YLAbyW/lHhOCiZu2iAI8AbmXem9lW6Tr7p/97s0w==
 -----END RSA PRIVATE KEY-----
 `
 	)
-	return corev1.Secret{
-		ObjectMeta: metav1.ObjectMeta{
-			Name: name,
-		},
-		Data: map[string][]byte{
-			"tls.crt": []byte(defaultCert),
-			"tls.key": []byte(defaultKey),
-		},
-	}
+	return corev1.Secret{ObjectMeta: metav1.ObjectMeta{Name: name}, Data: map[string][]byte{"tls.crt": []byte(defaultCert), "tls.key": []byte(defaultKey)}}
 }
-
-// newIngressController returns a new ingresscontroller with the specified name,
-// default certificate secret name (or nil if empty), and ingress domain, for
-// use as a test input.
 func newIngressController(name, defaultCertificateSecretName, domain string) operatorv1.IngressController {
-	ingresscontroller := operatorv1.IngressController{
-		ObjectMeta: metav1.ObjectMeta{
-			Name: name,
-		},
-		Status: operatorv1.IngressControllerStatus{
-			Domain: domain,
-		},
-	}
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	ingresscontroller := operatorv1.IngressController{ObjectMeta: metav1.ObjectMeta{Name: name}, Status: operatorv1.IngressControllerStatus{Domain: domain}}
 	if len(defaultCertificateSecretName) != 0 {
 		ingresscontroller.Spec.DefaultCertificate = &corev1.LocalObjectReference{Name: defaultCertificateSecretName}
 	}
 	return ingresscontroller
 }
-
-// TestDesiredRouterCertsGlobalSecret verifies that we get the expected global
-// secret for the default ingresscontroller and for various combinations of
-// ingresscontrollers and default certificate secrets.
 func TestDesiredRouterCertsGlobalSecret(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type testInputs struct {
-		ingresses []operatorv1.IngressController
-		secrets   []corev1.Secret
+		ingresses	[]operatorv1.IngressController
+		secrets		[]corev1.Secret
 	}
-	type testOutputs struct {
-		secret *corev1.Secret
-	}
+	type testOutputs struct{ secret *corev1.Secret }
 	var (
-		defaultCert = newSecret("router-certs-default")
-		defaultCI   = newIngressController("default", "", "apps.my.devcluster.openshift.com")
-
-		ci1 = newIngressController("ci1", "s1", "dom1")
-		ci2 = newIngressController("ci2", "s2", "dom2")
-		s1  = newSecret("s1")
-		s2  = newSecret("s2")
-		// data has the PEM for defaultCert, s1, and s2 (which all have
-		// the same certificate and key).
-		data = bytes.Join([][]byte{
-			s1.Data["tls.crt"],
-			s1.Data["tls.key"],
-		}, nil)
+		defaultCert	= newSecret("router-certs-default")
+		defaultCI	= newIngressController("default", "", "apps.my.devcluster.openshift.com")
+		ci1		= newIngressController("ci1", "s1", "dom1")
+		ci2		= newIngressController("ci2", "s2", "dom2")
+		s1		= newSecret("s1")
+		s2		= newSecret("s2")
+		data		= bytes.Join([][]byte{s1.Data["tls.crt"], s1.Data["tls.key"]}, nil)
 	)
 	testCases := []struct {
-		description string
-		inputs      testInputs
-		output      testOutputs
-	}{
-		{
-			description: "default configuration",
-			inputs: testInputs{
-				[]operatorv1.IngressController{defaultCI},
-				[]corev1.Secret{defaultCert},
-			},
-			output: testOutputs{
-				&corev1.Secret{
-					Data: map[string][]byte{"apps.my.devcluster.openshift.com": data},
-				},
-			},
-		},
-		{
-			description: "no ingresses",
-			inputs: testInputs{
-				[]operatorv1.IngressController{},
-				[]corev1.Secret{},
-			},
-			output: testOutputs{nil},
-		},
-		{
-			description: "no secrets",
-			inputs: testInputs{
-				[]operatorv1.IngressController{ci1},
-				[]corev1.Secret{},
-			},
-			output: testOutputs{nil},
-		},
-		{
-			description: "missing secret",
-			inputs: testInputs{
-				[]operatorv1.IngressController{ci1, ci2},
-				[]corev1.Secret{s1},
-			},
-			output: testOutputs{
-				&corev1.Secret{
-					Data: map[string][]byte{"dom1": data},
-				},
-			},
-		},
-		{
-			description: "extra secret",
-			inputs: testInputs{
-				[]operatorv1.IngressController{ci2},
-				[]corev1.Secret{s1, s2},
-			},
-			output: testOutputs{
-				&corev1.Secret{
-					Data: map[string][]byte{"dom2": data},
-				},
-			},
-		},
-		{
-			description: "perfect match",
-			inputs: testInputs{
-				[]operatorv1.IngressController{ci1, ci2},
-				[]corev1.Secret{s1, s2},
-			},
-			output: testOutputs{
-				&corev1.Secret{
-					Data: map[string][]byte{
-						"dom1": data,
-						"dom2": data,
-					},
-				},
-			},
-		},
-	}
-
+		description	string
+		inputs		testInputs
+		output		testOutputs
+	}{{description: "default configuration", inputs: testInputs{[]operatorv1.IngressController{defaultCI}, []corev1.Secret{defaultCert}}, output: testOutputs{&corev1.Secret{Data: map[string][]byte{"apps.my.devcluster.openshift.com": data}}}}, {description: "no ingresses", inputs: testInputs{[]operatorv1.IngressController{}, []corev1.Secret{}}, output: testOutputs{nil}}, {description: "no secrets", inputs: testInputs{[]operatorv1.IngressController{ci1}, []corev1.Secret{}}, output: testOutputs{nil}}, {description: "missing secret", inputs: testInputs{[]operatorv1.IngressController{ci1, ci2}, []corev1.Secret{s1}}, output: testOutputs{&corev1.Secret{Data: map[string][]byte{"dom1": data}}}}, {description: "extra secret", inputs: testInputs{[]operatorv1.IngressController{ci2}, []corev1.Secret{s1, s2}}, output: testOutputs{&corev1.Secret{Data: map[string][]byte{"dom2": data}}}}, {description: "perfect match", inputs: testInputs{[]operatorv1.IngressController{ci1, ci2}, []corev1.Secret{s1, s2}}, output: testOutputs{&corev1.Secret{Data: map[string][]byte{"dom1": data, "dom2": data}}}}}
 	for _, tc := range testCases {
 		expected := tc.output.secret
 		actual, err := desiredRouterCertsGlobalSecret(tc.inputs.secrets, tc.inputs.ingresses, "openshift-ingress")
