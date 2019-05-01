@@ -14,7 +14,7 @@ type KubeScheduler struct {
 	metav1.ObjectMeta `json:"metadata"`
 
 	// +required
-	Spec   KubeSchedulerSpec   `json:"spec"`
+	Spec KubeSchedulerSpec `json:"spec"`
 	// +optional
 	Status KubeSchedulerStatus `json:"status"`
 }

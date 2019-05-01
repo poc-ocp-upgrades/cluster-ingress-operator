@@ -111,7 +111,7 @@ func (ResourcePatch) SwaggerDoc() map[string]string {
 }
 
 var map_StaticPodOperatorSpec = map[string]string{
-	"": "StaticPodOperatorSpec is spec for controllers that manage static pods.",
+	"":                       "StaticPodOperatorSpec is spec for controllers that manage static pods.",
 	"failedRevisionLimit":    "failedRevisionLimit is the number of failed static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default)",
 	"succeededRevisionLimit": "succeededRevisionLimit is the number of successful static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default)",
 }
@@ -121,7 +121,7 @@ func (StaticPodOperatorSpec) SwaggerDoc() map[string]string {
 }
 
 var map_StaticPodOperatorStatus = map[string]string{
-	"": "StaticPodOperatorStatus is status for controllers that manage static pods.  There are different needs because individual node status must be tracked.",
+	"":                        "StaticPodOperatorStatus is status for controllers that manage static pods.  There are different needs because individual node status must be tracked.",
 	"latestAvailableRevision": "latestAvailableRevision is the deploymentID of the most recent deployment",
 	"nodeStatuses":            "nodeStatuses track the deployment values and errors across individual nodes",
 }
@@ -422,10 +422,10 @@ func (OVNKubernetesConfig) SwaggerDoc() map[string]string {
 }
 
 var map_OpenShiftSDNConfig = map[string]string{
-	"":          "OpenShiftSDNConfig configures the three openshift-sdn plugins",
-	"mode":      "mode is one of \"Multitenant\", \"Subnet\", or \"NetworkPolicy\"",
-	"vxlanPort": "vxlanPort is the port to use for all vxlan packets. The default is 4789.",
-	"mtu":       "mtu is the mtu to use for the tunnel interface. Defaults to 1450 if unset. This must be 50 bytes smaller than the machine's uplink.",
+	"":                       "OpenShiftSDNConfig configures the three openshift-sdn plugins",
+	"mode":                   "mode is one of \"Multitenant\", \"Subnet\", or \"NetworkPolicy\"",
+	"vxlanPort":              "vxlanPort is the port to use for all vxlan packets. The default is 4789.",
+	"mtu":                    "mtu is the mtu to use for the tunnel interface. Defaults to 1450 if unset. This must be 50 bytes smaller than the machine's uplink.",
 	"useExternalOpenvswitch": "useExternalOpenvswitch tells the operator not to install openvswitch, because it will be provided separately. If set, you must provide it yourself.",
 }
 

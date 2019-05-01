@@ -14,7 +14,7 @@ type KubeControllerManager struct {
 	metav1.ObjectMeta `json:"metadata"`
 
 	// +required
-	Spec   KubeControllerManagerSpec   `json:"spec"`
+	Spec KubeControllerManagerSpec `json:"spec"`
 	// +optional
 	Status KubeControllerManagerStatus `json:"status"`
 }
